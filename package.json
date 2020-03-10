@@ -1,0 +1,19 @@
+{
+  "name": "8th_wall_card",
+  "version": "1.0.0",
+  "description": "AR with 8th Wall",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dbald/8th_wall_card.git"
+  },
+  "author": "Devin Baldwin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dbald/8th_wall_card/issues"
+  },
+  "homepage": "https://github.com/Dbald/8th_wall_card#readme"
+}
