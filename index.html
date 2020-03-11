@@ -24,8 +24,8 @@
       xrextras-runtime-error
     >
       <a-assets>
-        <a-asset-item id="dts-glb" src="./assets/dts.glb"></a-asset-item>
-        <img id="dts-thumb" src="./targets/dts.png" />
+        <a-asset-item id="dts" src="./assets/DTS-logo.gltf"></a-asset-item>
+        <!-- <img id="dts-thumb" src="./targets/dts.png" /> -->
         <!-- <video
           id="jelly-video"
           autoplay
@@ -45,7 +45,7 @@
 
       <a-entity xrextras-named-image-target="name: dts">
         <!-- Add a child entity that can be rotated independently of the image target. -->
-        <a-entity xrextras-one-finger-rotate gltf-model="#dts-glb"></a-entity>
+        <a-entity xrextras-one-finger-rotate gltf-model="#dts" position="1 1 1"></a-entity>
       </a-entity>
     </a-scene>
   </body>
