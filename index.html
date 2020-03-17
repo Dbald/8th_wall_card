@@ -25,19 +25,17 @@
       AFRAME.registerComponent('throw-star', {
         init: function() {
           const camera = document.getElementById('camera')
-          const splatSnd = document.querySelector('#splat').components.sound
-
           this.el.sceneEl.addEventListener('touchstart', event => {
 
             // Create element to be thrown, setting position, scale, and model
             const star = document.createElement('a-entity')
-            tomato.setAttribute('position', camera.object3D.position)
-            tomato.setAttribute('scale', '0.0175 0.0175 0.0175')
-            tomato.setAttribute('gltf-model', '#ninjastar')
+            star.setAttribute('position', camera.object3D.position)
+            star.setAttribute('scale', '0.0175 0.0175 0.0175')
+            star.setAttribute('gltf-model', '#ninjastar')
 
             // Choose a random rotation offset for some variation
             const randomRotation = { x: -90 + Math.random() * 30, y: Math.random() * 360, z: 0 }
-            tomato.setAttribute('rotation', randomRotation)
+            star.setAttribute('rotation', randomRotation)
 
             // Set velocity, rotated with camera direction
             const velocity = new THREE.Vector3(0, 0, -10)
@@ -45,7 +43,7 @@
             star.setAttribute('velocity', velocity)
 
             // Add physics body
-            tomato.setAttribute('body', {
+            star.setAttribute('body', {
               type: 'dynamic',
               shape: 'star'
             })
