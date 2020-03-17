@@ -38,7 +38,7 @@
             star.setAttribute('rotation', randomRotation)
 
             // Set velocity, rotated with camera direction
-            const velocity = new THREE.Vector3(0, 0, -10)
+            const velocity = new THREE.Vector3(0, 100, 0)
             velocity.applyQuaternion(camera.object3D.quaternion)
             star.setAttribute('velocity', velocity)
 
@@ -48,22 +48,8 @@
               shape: 'star'
             })
 
-            // Add tomato to scene
+            // Add shuriken to scene
             this.el.sceneEl.appendChild(star)
-
-            // The splat is created at the same time as the thrown tomato so
-            // there is time to load the model before it hits the ground
-            
-
-            // The splat consists of a model wrapped in an empty
-            // parent so we can apply the correct scaling animation
-            
-
-         
-
-      
-
-
           })
         }
       })
