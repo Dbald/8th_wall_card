@@ -13,43 +13,90 @@
     <meta property="og:model:type" content="model/gltf+json" />
     <!-- Scripts -->
     <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+    <script src="//cdn.8thwall.com/web/aframe/aframe-physics-system-3.2.0.min.js"></script>
+    <script src="//cdn.8thwall.com/web/aframe/aframe-animation-component-5.1.2.min.js"></script>
     <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
     <script
       async
       src="//apps.8thwall.com/xrweb?appKey=mFgTAdw8X9G9WsjZTyN46wS95Tc8wXAH61R8wCaQeB3l4KdURZvFQPxR2xTQU6S3ioBZeS"
     ></script>
+
+    <script>
+      AFRAME.registerComponent('throw-star', {
+        init: function() {
+          const camera = document.getElementById('camera')
+          const splatSnd = document.querySelector('#splat').components.sound
+
+          this.el.sceneEl.addEventListener('touchstart', event => {
+
+            // Create element to be thrown, setting position, scale, and model
+            const star = document.createElement('a-entity')
+            tomato.setAttribute('position', camera.object3D.position)
+            tomato.setAttribute('scale', '0.0175 0.0175 0.0175')
+            tomato.setAttribute('gltf-model', '#ninjastar')
+
+            // Choose a random rotation offset for some variation
+            const randomRotation = { x: -90 + Math.random() * 30, y: Math.random() * 360, z: 0 }
+            tomato.setAttribute('rotation', randomRotation)
+
+            // Set velocity, rotated with camera direction
+            const velocity = new THREE.Vector3(0, 0, -10)
+            velocity.applyQuaternion(camera.object3D.quaternion)
+            star.setAttribute('velocity', velocity)
+
+            // Add physics body
+            tomato.setAttribute('body', {
+              type: 'dynamic',
+              shape: 'star'
+            })
+
+            // Add tomato to scene
+            this.el.sceneEl.appendChild(star)
+
+            // The splat is created at the same time as the thrown tomato so
+            // there is time to load the model before it hits the ground
+            
+
+            // The splat consists of a model wrapped in an empty
+            // parent so we can apply the correct scaling animation
+            
+
+         
+
+      
+
+
+          })
+        }
+      })
+    </script>
   </head>
   <body>
     <a-scene
       xrweb
-      xrextras-gesture-detector
+      throw-star
+      physics="iterations: 1"
       xrextras-almost-there
       xrextras-loading
       xrextras-runtime-error
     >
       <a-assets>
-        <a-asset-item id="dts" src="./assets/DTS-logo.gltf"></a-asset-item>
-        <!-- <img id="dts-thumb" src="./targets/dts.png" /> -->
-        <!-- <video
-          id="jelly-video"
-          autoplay
-          muted
-          crossorigin="anonymous"
-          loop="true"
-          src="jellyfish-video.mp4">
-        </video> -->
+        <a-asset-item id="ninjastar" src="./assets/Shuriken.glb"></a-asset-item>
       </a-assets>
 
       <a-camera
-        raycaster="objects: .cantap"
-        cursor="fuse: false; rayOrigin: mouse;"
-      >
+        id="camera"
+        position="0 4 4">
       </a-camera>
 
-      <a-entity xrextras-named-image-target="name: dts">
-        <!-- Add a child entity that can be rotated independently of the image target. -->
-        <a-entity xrextras-one-finger-rotate gltf-model="#dts" scale="0.5 0.5 0.5"></a-entity>
+      <a-entity
+        light="type: directional;
+               intensity: 0.8;"
+        position="1 4.3 2.5">
       </a-entity>
+
+      <a-light type="ambient" intensity="0.5"></a-light>
+
     </a-scene>
   </body>
 </html>
