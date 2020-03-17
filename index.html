@@ -32,11 +32,10 @@
             star.setAttribute('position', camera.object3D.position)
             star.setAttribute('scale', '0.0175 0.0175 0.0175')
             star.setAttribute('gltf-model', '#ninjastar')
-            star.setAttribute('rotation', '0 90 0')
 
             // Choose a random rotation offset for some variation
-            // const randomRotation = { x: -90 + Math.random() * 30, y: Math.random() * 360, z: 0 }
-            // star.setAttribute('rotation', randomRotation)
+            const randomRotation = { x: -90 + Math.random() * 30, y: Math.random() * 360, z: 0 }
+            star.setAttribute('rotation', randomRotation)
 
             // Set velocity, rotated with camera direction
             const velocity = new THREE.Vector3(0, 0, -10)
@@ -58,7 +57,13 @@
 
             // The splat consists of a model wrapped in an empty
             // parent so we can apply the correct scaling animation
-            
+            let didCollide = false
+            star.addEventListener('collide', event => {
+              // Only want to do the splat once, and with the ground only
+              if (didCollide || event.detail.body.el.id != 'ground') {
+                return
+              }
+              didCollide = true
 
          
 
@@ -95,6 +100,14 @@
       </a-entity>
 
       <a-light type="ambient" intensity="0.5"></a-light>
+
+      <a-box
+        id="ground"
+        material="transparent: true; opacity: 0"
+        static-body
+        scale="1000 2 1000"
+        position="0 -1 0">
+      </a-box>
 
     </a-scene>
   </body>
