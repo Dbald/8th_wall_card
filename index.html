@@ -38,7 +38,7 @@
             star.setAttribute('rotation', randomRotation)
 
             // Set velocity, rotated with camera direction
-            const velocity = new THREE.Vector3(0, 0, -10)
+            const velocity = new THREE.Vector3(0, 0, -20)
             velocity.applyQuaternion(camera.object3D.quaternion)
             star.setAttribute('velocity', velocity)
 
@@ -79,7 +79,7 @@
     <a-scene
       xrweb
       throw-star
-      physics="iterations: 2"
+      physics="iterations: 1"
       xrextras-almost-there
       xrextras-loading
       xrextras-runtime-error
