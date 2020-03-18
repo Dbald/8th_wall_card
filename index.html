@@ -38,7 +38,7 @@
             star.setAttribute('rotation', randomRotation)
 
             // Set velocity, rotated with camera direction
-            const velocity = new THREE.Vector3(0, 0, -20)
+            const velocity = new THREE.Vector3(0, 0, -50)
             velocity.applyQuaternion(camera.object3D.quaternion)
             star.setAttribute('velocity', velocity)
 
@@ -57,14 +57,14 @@
 
             // The splat consists of a model wrapped in an empty
             // parent so we can apply the correct scaling animation
-            let didCollide = false
-            star.addEventListener('collide', event => {
-              // Only want to do the splat once, and with the ground only
-              if (didCollide || event.detail.body.el.id != 'ground') {
-                return
-              }
-              didCollide = true
-            });
+            // let didCollide = false
+            // star.addEventListener('collide', event => {
+            //   // Only want to do the splat once, and with the ground only
+            //   if (didCollide || event.detail.body.el.id != 'ground') {
+            //     return
+            //   }
+            //   didCollide = true
+            // });
          
 
       
@@ -85,7 +85,7 @@
       xrextras-runtime-error
     >
       <a-assets>
-        <a-asset-item id="ninjastar" src="./assets/dts.glb"></a-asset-item>
+        <a-asset-item id="ninjastar" src="./assets/Shuriken.glb"></a-asset-item>
       </a-assets>
 
       <a-camera
